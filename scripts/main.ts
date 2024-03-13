@@ -1,47 +1,49 @@
-import * as anchor from "@coral-xyz/anchor";
-// @ts-ignore
-import * as token from "@solana/spl-token-018";
-const { BN, Program } = anchor;
-import { MPL_TOKEN_METADATA_PROGRAM_ID as UMI_MPL_TOKEN_METADATA_PROGRAM_ID } from "@metaplex-foundation/mpl-token-metadata";
-
+import * as anchor from '@coral-xyz/anchor';
+import {
+  MPL_TOKEN_METADATA_PROGRAM_ID as UMI_MPL_TOKEN_METADATA_PROGRAM_ID,
+} from '@metaplex-foundation/mpl-token-metadata';
+import { toWeb3JsPublicKey } from '@metaplex-foundation/umi-web3js-adapters';
 import {
   OpenBookV2Client,
-  PlaceOrderArgs,
-  Side,
   OrderType,
+  PlaceOrderArgs,
   SelfTradeBehavior,
-} from "@openbook-dex/openbook-v2";
-import { toWeb3JsPublicKey } from "@metaplex-foundation/umi-web3js-adapters";
+  Side,
+} from '@openbook-dex/openbook-v2';
+// @ts-ignore
+import * as token from '@solana/spl-token-018';
 import {
   ComputeBudgetProgram,
   Keypair,
   PublicKey,
-  SYSVAR_RENT_PUBKEY,
   SystemProgram,
+  SYSVAR_RENT_PUBKEY,
   Transaction,
-} from "@solana/web3.js";
+} from '@solana/web3.js';
 
+import { AutocratMigrator } from '../target/types/autocrat_migrator';
+import { AutocratV0 } from '../target/types/autocrat_v0';
+import {
+  ConditionalVault,
+  IDL as ConditionalVaultIDL,
+} from '../target/types/conditional_vault';
+import { OpenbookTwap } from '../tests/fixtures/openbook_twap';
 import {
   fetchOnchainMetadataForMint,
   uploadOffchainMetadata,
-} from "./uploadOffchainMetadata";
-import { AutocratV0 } from "../target/types/autocrat_v0";
-import {
-  IDL as ConditionalVaultIDL,
-  ConditionalVault,
-} from "../target/types/conditional_vault";
-import { OpenbookTwap } from "../tests/fixtures/openbook_twap";
-import { AutocratMigrator } from "../target/types/autocrat_migrator";
+} from './uploadOffchainMetadata';
+
+const { BN, Program } = anchor;
 
 const AutocratIDL: AutocratV0 = require("../target/idl/autocrat_v0.json");
 const OpenbookTwapIDL: OpenbookTwap = require("../tests/fixtures/openbook_twap.json");
 const AutocratMigratorIDL: AutocratMigrator = require("../target/idl/autocrat_migrator.json");
 
 const AUTOCRAT_PROGRAM_ID = new PublicKey(
-  "metaX99LHn3A7Gr7VAcCfXhpfocvpMpqQ3eyp3PGUUq"
+  "32j1FNhGvJhv6wzYiJ7yA1x253Xi61wmVx56dxLqwuTR"
 );
 const CONDITIONAL_VAULT_PROGRAM_ID = new PublicKey(
-  "vaU1tVLj8RFk7mNj1BxqgAsMKKaL8UvEUHvU3tdbZPe"
+  "54wZyuZLTSbbEacEMGtVVkdmyyjYjXybV3MrC1kQ4Uw7"
 );
 const OPENBOOK_TWAP_PROGRAM_ID = new PublicKey(
   "TWAPrdhADy2aTKN5iFZtNnkQYXERD9NvKjPFVPMSCNN"
@@ -51,7 +53,7 @@ export const OPENBOOK_PROGRAM_ID = new PublicKey(
 );
 
 export const META = new PublicKey(
-  "METADDFL6wWMWEoKTFJwcThTbUmtarRJZjRpzUvkxhr"
+  "EyiHKVZPNMyzDf1cjVwBBpnaiQKRR9nMnsCuXF7Fyqbe"
 );
 export const DEVNET_USDC = new PublicKey(
   "B9CZDrwg7d34MiPiWoUSmddriCtQB5eB2h9EUSDHt48b"
@@ -62,8 +64,8 @@ export const USDC = new PublicKey(
 export const PROPH3t_PUBKEY = new PublicKey(
   "65U66fcYuNfqN12vzateJhZ4bgDuxFWN9gMwraeQKByg"
 );
-const AUTOCRAT_MIGRATOR_PROGRAM_ID = new PublicKey(
-  "migkwAXrXFN34voCYQUhFQBXZJjHrWnpEXbSGTqZdB3"
+const autocrat_migRATOR_PROGRAM_ID = new PublicKey(
+  "8bLjG4FFymvZYPNA7ALaNhEwoh7LEbJG3h2oPp1FwAYi"
 );
 
 const MPL_TOKEN_METADATA_PROGRAM_ID = toWeb3JsPublicKey(
@@ -109,12 +111,12 @@ export const openbookTwap = new Program<OpenbookTwap>(
 
 export const migrator = new anchor.Program<AutocratMigrator>(
   AutocratMigratorIDL,
-  AUTOCRAT_MIGRATOR_PROGRAM_ID,
+  autocrat_migRATOR_PROGRAM_ID,
   provider
 );
 
 export const [dao] = PublicKey.findProgramAddressSync(
-  [anchor.utils.bytes.utf8.encode("WWCACOTMICMIBMHAFTTWYGHMB")],
+  [anchor.utils.bytes.utf8.encode("sWWCACOTMICMIBMHAFTTWYGHMB")],
   autocratProgram.programId
 );
 

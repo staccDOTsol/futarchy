@@ -1,5 +1,6 @@
-import * as anchor from "@coral-xyz/anchor";
-import * as token from "@solana/spl-token";
+import * as anchor from '@coral-xyz/anchor';
+import * as token from '@solana/spl-token';
+
 const { PublicKey, Keypair, SystemProgram } = anchor.web3;
 const { BN, Program } = anchor;
 
@@ -75,7 +76,7 @@ const technoAnalysts = [
 
 async function main() {
   const META = new anchor.web3.PublicKey(
-    "METADDFL6wWMWEoKTFJwcThTbUmtarRJZjRpzUvkxhr"
+    "EyiHKVZPNMyzDf1cjVwBBpnaiQKRR9nMnsCuXF7Fyqbe"
   );
 
   const senderAcc = await token.getOrCreateAssociatedTokenAccount(

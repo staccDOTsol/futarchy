@@ -1,39 +1,49 @@
-import * as anchor from "@coral-xyz/anchor";
-import { BN, Program, web3 } from "@coral-xyz/anchor";
+import { BankrunProvider } from 'anchor-bankrun';
+import { assert } from 'chai';
 import {
-  MPL_TOKEN_METADATA_PROGRAM_ID as UMI_MPL_TOKEN_METADATA_PROGRAM_ID,
-  createMetadataAccountV3
-} from "@metaplex-foundation/mpl-token-metadata";
-import {
-  Umi,
-  createSignerFromKeypair,
-  keypairIdentity,
-  none
-} from "@metaplex-foundation/umi";
-import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
-import {
-  fromWeb3JsKeypair,
-  fromWeb3JsPublicKey,
-  toWeb3JsLegacyTransaction,
-  toWeb3JsPublicKey,
-} from "@metaplex-foundation/umi-web3js-adapters";
-import * as token from "@solana/spl-token";
-import { SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
-import { BankrunProvider } from "anchor-bankrun";
-import { assert } from "chai";
-import { BanksClient, ProgramTestContext, startAnchor } from "solana-bankrun";
+  BanksClient,
+  ProgramTestContext,
+  startAnchor,
+} from 'solana-bankrun';
 import {
   createAccount,
   createAssociatedTokenAccount,
   createMint,
   getAccount,
   mintTo,
-} from "spl-token-bankrun";
+} from 'spl-token-bankrun';
+
+import * as anchor from '@coral-xyz/anchor';
+import {
+  BN,
+  Program,
+  web3,
+} from '@coral-xyz/anchor';
+import {
+  createMetadataAccountV3,
+  MPL_TOKEN_METADATA_PROGRAM_ID as UMI_MPL_TOKEN_METADATA_PROGRAM_ID,
+} from '@metaplex-foundation/mpl-token-metadata';
+import {
+  createSignerFromKeypair,
+  keypairIdentity,
+  none,
+  Umi,
+} from '@metaplex-foundation/umi';
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+import {
+  fromWeb3JsKeypair,
+  fromWeb3JsPublicKey,
+  toWeb3JsLegacyTransaction,
+  toWeb3JsPublicKey,
+} from '@metaplex-foundation/umi-web3js-adapters';
+import * as token from '@solana/spl-token';
+import { SYSVAR_RENT_PUBKEY } from '@solana/web3.js';
+
+import { ConditionalVault } from '../target/types/conditional_vault';
+import { expectError } from './utils/utils';
 
 const { PublicKey, Keypair } = web3;
 
-import { ConditionalVault } from "../target/types/conditional_vault";
-import { expectError } from "./utils/utils";
 const ConditionalVaultIDL: ConditionalVault = require("../target/idl/conditional_vault.json");
 
 export type VaultProgram = anchor.Program<ConditionalVault>;
@@ -42,7 +52,7 @@ export type Signer = anchor.web3.Signer;
 export type Keypair = anchor.web3.Keypair;
 
 const CONDITIONAL_VAULT_PROGRAM_ID = new PublicKey(
-  "vaU1tVLj8RFk7mNj1BxqgAsMKKaL8UvEUHvU3tdbZPe"
+  "54wZyuZLTSbbEacEMGtVVkdmyyjYjXybV3MrC1kQ4Uw7"
 );
 
 const METADATA_URI =

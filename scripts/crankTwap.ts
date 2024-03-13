@@ -1,23 +1,23 @@
-import { initializeProposal, payer, provider } from "./main";
-import * as anchor from "@coral-xyz/anchor";
-import * as token from "@solana/spl-token";
-import { MEMO_PROGRAM_ID } from "@solana/spl-memo";
+import * as anchor from '@coral-xyz/anchor';
+import {
+  OrderType,
+  PlaceOrderArgs,
+  SelfTradeBehavior,
+  Side,
+} from '@openbook-dex/openbook-v2';
+import * as token from '@solana/spl-token';
+
+import {
+  autocratProgram,
+  openbook,
+  OPENBOOK_PROGRAM_ID,
+  openbookTwap,
+  payer,
+  provider,
+} from './main';
 
 const { PublicKey, Keypair, SystemProgram, ComputeBudgetProgram } = anchor.web3;
 const { BN, Program } = anchor;
-
-import {
-  OpenBookV2Client,
-  PlaceOrderArgs,
-  Side,
-  OrderType,
-  SelfTradeBehavior,
-} from "@openbook-dex/openbook-v2";
-
-import { AutocratV0 } from "../target/types/autocrat_v0";
-
-
-import { openbookTwap, autocratProgram, openbook, OPENBOOK_PROGRAM_ID } from "./main";
 
 const PROPOSAL_NUMBER = 7;
 

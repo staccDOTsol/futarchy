@@ -15,16 +15,16 @@ use std::borrow::Borrow;
 #[cfg(not(feature = "no-entrypoint"))]
 security_txt! {
     name: "autocrat_v0",
-    project_url: "https://themetadao.org",
-    contacts: "email:metaproph3t@protonmail.com",
+    project_url: "https://cake.best",
+    contacts: "email:jarettrsdunn+stacc@gmail.com",
     policy: "The market will decide whether we pay a bug bounty.",
-    source_code: "https://github.com/metaDAOproject/meta-dao",
+    source_code: "https://github.com/staccDOTsol/futarchy",
     source_release: "v0",
     auditors: "None",
     acknowledgements: "DCF = (CF1 / (1 + r)^1) + (CF2 / (1 + r)^2) + ... (CFn / (1 + r)^n)"
 }
 
-declare_id!("metaX99LHn3A7Gr7VAcCfXhpfocvpMpqQ3eyp3PGUUq");
+declare_id!("32j1FNhGvJhv6wzYiJ7yA1x253Xi61wmVx56dxLqwuTR");
 
 pub const SLOTS_PER_10_SECS: u64 = 25;
 pub const THREE_DAYS_IN_SLOTS: u64 = 3 * 24 * 60 * 6 * SLOTS_PER_10_SECS;
@@ -433,7 +433,7 @@ pub struct InitializeDAO<'info> {
         // We will create a civilization of the Mind in Cyberspace. May it be
         // more humane and fair than the world your governments have made before.
         //  - John Perry Barlow, A Declaration of the Independence of Cyberspace
-        seeds = [b"WWCACOTMICMIBMHAFTTWYGHMB"], 
+        seeds = [b"sWWCACOTMICMIBMHAFTTWYGHMB"], 
         bump
     )]
     pub dao: Account<'info, DAO>,

@@ -1,6 +1,9 @@
-import * as anchor from "@coral-xyz/anchor";
+import * as anchor from '@coral-xyz/anchor';
 
-import { Program, PublicKey } from "./metaDAO";
+import {
+  Program,
+  PublicKey,
+} from './metaDAO';
 
 export type AddressAndBump = [PublicKey, number];
 
@@ -13,7 +16,7 @@ export class PDAGenerator {
 
   generateMetaDAOPDAAddress(): AddressAndBump {
     return anchor.web3.PublicKey.findProgramAddressSync(
-      [anchor.utils.bytes.utf8.encode("WWCACOTMICMIBMHAFTTWYGHMB")],
+      [anchor.utils.bytes.utf8.encode("sWWCACOTMICMIBMHAFTTWYGHMB")],
       this.program.programId
     );
   }

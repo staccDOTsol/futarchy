@@ -19,14 +19,14 @@ either devnet, mainnet, or (recommended) an RPC URL.
 
 | program           | tag | program ID                                  |
 | ----------------- | --- | ------------------------------------------- |
-| autocrat_v0       | v0.1| metaX99LHn3A7Gr7VAcCfXhpfocvpMpqQ3eyp3PGUUq |
-| autocrat_migrator | v0.1| migkwAXrXFN34voCYQUhFQBXZJjHrWnpEXbSGTqZdB3 |
+| autocrat_v0       | v0.1| 32j1FNhGvJhv6wzYiJ7yA1x253Xi61wmVx56dxLqwuTR |
+| autocrat_migrator | v0.1| 8bLjG4FFymvZYPNA7ALaNhEwoh7LEbJG3h2oPp1FwAYi |
 | autocrat_v0       | v0  | meta3cxKzFBmWYgCVozmvCQAS3y9b3fGxrG9HkHL7Wi |
-| conditional_vault | v0  | vaU1tVLj8RFk7mNj1BxqgAsMKKaL8UvEUHvU3tdbZPe |
+| conditional_vault | v0  | 54wZyuZLTSbbEacEMGtVVkdmyyjYjXybV3MrC1kQ4Uw7 |
 
 All programs are immutable and verifiable, and have been verified with the OtterSec API.
 
-The META token mint is METADDFL6wWMWEoKTFJwcThTbUmtarRJZjRpzUvkxhr.
+The META token mint is EyiHKVZPNMyzDf1cjVwBBpnaiQKRR9nMnsCuXF7Fyqbe.
 
 ## Run Instructions
 

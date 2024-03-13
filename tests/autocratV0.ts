@@ -1,44 +1,46 @@
-import * as anchor from "@coral-xyz/anchor";
-import { BN, Program } from "@coral-xyz/anchor";
-import * as token from "@solana/spl-token";
-import { BankrunProvider } from "anchor-bankrun";
+import { BankrunProvider } from 'anchor-bankrun';
+import { assert } from 'chai';
 import {
-  OpenBookV2Client,
-  IDL,
-  PlaceOrderArgs,
-  Side,
-  OrderType,
-  SelfTradeBehavior
-} from "@openbook-dex/openbook-v2";
-import { assert } from "chai";
-import {
-  startAnchor,
-  Clock,
   BanksClient,
+  Clock,
   ProgramTestContext,
-} from "solana-bankrun";
+  startAnchor,
+} from 'solana-bankrun';
 import {
-  createMint,
   createAccount,
   createAssociatedTokenAccount,
-  mintToOverride,
-  getMint,
+  createMint,
   getAccount,
-} from "spl-token-bankrun";
+  getMint,
+  mintToOverride,
+} from 'spl-token-bankrun';
 
+import * as anchor from '@coral-xyz/anchor';
+import {
+  BN,
+  Program,
+} from '@coral-xyz/anchor';
+import {
+  OpenBookV2Client,
+  OrderType,
+  PlaceOrderArgs,
+  SelfTradeBehavior,
+  Side,
+} from '@openbook-dex/openbook-v2';
+import * as token from '@solana/spl-token';
+
+import { AutocratMigrator } from '../target/types/autocrat_migrator';
+import { AutocratV0 } from '../target/types/autocrat_v0';
+import { ConditionalVault } from '../target/types/conditional_vault';
 import {
   mintConditionalTokens,
   redeemConditionalTokens,
-} from "./conditionalVault";
-
-import { expectError } from "./utils/utils";
-import { AutocratV0 } from "../target/types/autocrat_v0";
-import { ConditionalVault } from "../target/types/conditional_vault";
-import { AutocratMigrator } from "../target/types/autocrat_migrator";
+} from './conditionalVault';
+import { OpenbookTwap } from './fixtures/openbook_twap';
+import { expectError } from './utils/utils';
 
 const { PublicKey, Keypair } = anchor.web3;
 
-import { OpenbookTwap } from "./fixtures/openbook_twap";
 const OpenbookTwapIDL: OpenbookTwap = require("./fixtures/openbook_twap.json");
 
 const AutocratIDL: AutocratV0 = require("../target/idl/autocrat_v0.json");
@@ -64,11 +66,11 @@ type ProposalInstruction = anchor.IdlTypes<AutocratV0>["ProposalInstruction"];
 
 // this test file isn't 'clean' or DRY or whatever; sorry!
 const AUTOCRAT_PROGRAM_ID = new PublicKey(
-  "metaX99LHn3A7Gr7VAcCfXhpfocvpMpqQ3eyp3PGUUq"
+  "32j1FNhGvJhv6wzYiJ7yA1x253Xi61wmVx56dxLqwuTR"
 );
 
 const CONDITIONAL_VAULT_PROGRAM_ID = new PublicKey(
-  "vaU1tVLj8RFk7mNj1BxqgAsMKKaL8UvEUHvU3tdbZPe"
+  "54wZyuZLTSbbEacEMGtVVkdmyyjYjXybV3MrC1kQ4Uw7"
 );
 
 const OPENBOOK_TWAP_PROGRAM_ID = new PublicKey(
@@ -79,8 +81,8 @@ const OPENBOOK_PROGRAM_ID = new PublicKey(
   "opnb2LAfJYbRMAHHvqjCwQxanZn7ReEHp1k81EohpZb"
 );
 
-const AUTOCRAT_MIGRATOR_PROGRAM_ID = new PublicKey(
-  "migkwAXrXFN34voCYQUhFQBXZJjHrWnpEXbSGTqZdB3"
+const autocrat_migRATOR_PROGRAM_ID = new PublicKey(
+  "8bLjG4FFymvZYPNA7ALaNhEwoh7LEbJG3h2oPp1FwAYi"
 );
 
 const getMarketFromOpenbookCreatMarketIx = (
@@ -144,7 +146,7 @@ describe("autocrat_v0", async function () {
 
     migrator = new anchor.Program<AutocratMigrator>(
       AutocratMigratorIDL,
-      AUTOCRAT_MIGRATOR_PROGRAM_ID,
+      autocrat_migRATOR_PROGRAM_ID,
       provider
     );
 
@@ -164,7 +166,7 @@ describe("autocrat_v0", async function () {
   describe("#initialize_dao", async function () {
     it("initializes the DAO", async function () {
       [dao] = PublicKey.findProgramAddressSync(
-        [anchor.utils.bytes.utf8.encode("WWCACOTMICMIBMHAFTTWYGHMB")],
+        [anchor.utils.bytes.utf8.encode("sWWCACOTMICMIBMHAFTTWYGHMB")],
         autocrat.programId
       );
       [daoTreasury] = PublicKey.findProgramAddressSync(
